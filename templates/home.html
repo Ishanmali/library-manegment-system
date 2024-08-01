@@ -19,8 +19,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #f7f7f79c;
-            padding: 20px 20px;
+            background-color: white;
+            padding: 10px 10px;
         }
 
         .navbar a {
@@ -45,7 +45,7 @@
             flex: 0.7;
             display: flex;
             flex-direction: column; 
-            background-color: hsl(0, 0%, 0%);
+            background-color: hsl(0, 0%, 98%);
         }
         
         .part1 {
@@ -71,7 +71,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.562);
+            background-color: rgba(0, 0, 0, 0.342);
             z-index: 1;
         }
 
@@ -82,6 +82,16 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        .part2 {
+            flex: 1;
+            width: 100%;
+            padding: 20px;
+            height: 1000px; 
+            position: relative;
+            background-color: rgb(224, 217, 217);
+
         }
 
         .search-bar {
@@ -116,7 +126,9 @@
 <body>
     <div class="navbar">
         <div class="left">
-            <a href="#" class="logo">logo</a>
+            <a class="navbar-brand" href="{{url_for('home')}}">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="logo" style="height: 40px;">
+              </a>
             <a href="{{url_for('home')}}">Home</a>
             <a href="#">about</a>
         </div>
@@ -127,7 +139,7 @@
     </div>
     
     <div class="container">
-        <div class="part1">
+       <div class="part1">
             <div class="part1-content">
                 <div class="search-bar">
                     <input type="text" placeholder="Search...">
@@ -135,8 +147,14 @@
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
+    
+    <div class="container">
+        <div class="part2">
 
+        </div>
+    </div>
+ 
 </body>
 </html>
 {% endblock %}
