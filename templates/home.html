@@ -8,125 +8,126 @@
     <title>Home Page</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 150vh;
-        }
-        
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: white;
-            padding: 10px 10px;
-        }
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 150vh;
+}
 
-        .navbar a {
-            text-decoration: none;
-            color: rgb(126, 36, 134);
-            padding: 10px;
-            font-size: 20px;
-            font-family: sans-serif;
-        }
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px 10px;
+}
 
-        .navbar .left {
-            display: flex;
-            align-items: center;
-        }
+.navbar a {
+    text-decoration: none;
+    color: rgb(126, 36, 134);
+    padding: 10px;
+    font-size: 20px;
+    font-family: sans-serif;
+}
 
-        .navbar .right {
-            display: flex;
-            align-items: center;
-        }
+.navbar .left {
+    display: flex;
+    align-items: center;
+}
 
-        .container {
-            flex: 0.7;
-            display: flex;
-            flex-direction: column; 
-            background-color: hsl(0, 100%, 100%);
-        }
-        
-        .part1 {
-            flex: 1;
-            width: 100%;
-            padding: 20px;
-            height: 1000px; 
-            position: relative;
-            background-image: url('./static/l1.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.navbar .right {
+    display: flex;
+    align-items: center;
+}
 
-        .part1::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.342);
-            z-index: 1;
-        }
+.container {
+    flex: 0.7;
+    display: flex;
+    flex-direction: column; 
+    background-color: hsl(0, 100%, 100%);
+}
 
-        .part1-content {
-            position: relative;
-            z-index: 2; 
-            color: rgb(240, 229, 229); 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.part1 {
+    flex: 1;
+    width: 100%;
+    padding: 20px;
+    height: 1000px; 
+    position: relative;
+    background-image: url('./static/l1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .part2 {
-            flex: 1;
-            width: 100%;
-            padding: 20px;
-            height: 1000px; 
-            position: relative;
-            background-color: rgb(224, 217, 217);
+.part1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.342);
+    z-index: 1;
+}
 
-        }
+.part1-content {
+    position: relative;
+    z-index: 2; 
+    color: rgb(240, 229, 229); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .search-bar {
-            display: flex;
-           
-        
-        }
+.part2 {
+    flex: 1;
+    width: 100%;
+    padding: 20px;
+    height: 1000px; 
+    position: relative;
+    background-color: rgb(224, 217, 217);
 
-        .search-bar input[type="text"] {
-            margin-top: 160px;
-            padding: 10px;
-            font-size: 16px;
-            border: #adaaad;
-            border-width: 500px;
-            border-radius: 5px 0 0 5px;
-            outline: #8e5096;
-            background-color: #cac6c6e7;
-           
-        }
+}
 
-        .search-bar button {
-            margin-top: 160px;
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            border-radius: 0 5px 5px 0;
-            background-color: #8e5096;
-            color: white;
-            cursor: pointer;
-        }
+.search-bar {
+    display: flex;
+   
 
-        .search-bar button:hover {
-            background-color: #101213;
-        }
+}
+
+.search-bar input[type="text"] {
+    margin-top: 160px;
+    padding: 10px;
+    font-size: 16px;
+    border: #adaaad;
+    border-width: 500px;
+    border-radius: 5px 0 0 5px;
+    outline: #8e5096;
+    background-color: #cac6c6e7;
+   
+}
+
+.search-bar button {
+    margin-top: 160px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    background-color: #8e5096;
+    color: white;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #101213;
+}
     </style>
+
 </head>
 <body>
     <div class="navbar">
