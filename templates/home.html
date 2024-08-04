@@ -45,7 +45,7 @@
             flex: 0.7;
             display: flex;
             flex-direction: column; 
-            background-color: hsl(0, 0%, 98%);
+            background-color: hsl(0, 100%, 100%);
         }
         
         .part1 {
@@ -96,9 +96,12 @@
 
         .search-bar {
             display: flex;
+           
+        
         }
 
         .search-bar input[type="text"] {
+            margin-top: 160px;
             padding: 10px;
             font-size: 16px;
             border: #adaaad;
@@ -106,9 +109,11 @@
             border-radius: 5px 0 0 5px;
             outline: #8e5096;
             background-color: #cac6c6e7;
+           
         }
 
         .search-bar button {
+            margin-top: 160px;
             padding: 10px;
             font-size: 16px;
             border: none;
@@ -141,6 +146,11 @@
     <div class="container">
        <div class="part1">
             <div class="part1-content">
+                <div style="margin-top:-250px;position:relative; text-align:center">
+                    <div class="welcome-container">
+                        <h1>Welcome to <b>RUSL</b> <br>Book Club</h1>
+                    </div>
+                </div>
                 <div class="search-bar">
                     <input type="text" placeholder="Search...">
                     <button type="submit">Search</button>
