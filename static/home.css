@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px 20px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: rgb(126, 36, 134);
+    padding: 10px;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+.navbar .left {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .right {
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.part1 {
+    flex: 1;
+    width: 100%;
+    padding: 20px;
+    height: calc(100vh - 80px);
+    position: relative;
+    background-image: url('/static/l1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.part1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.603);
+    z-index: 1;
+}
+
+.part1-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.part1-content h1 {
+    font-size: 3em;
+    background: linear-gradient(to right, rgb(28, 80, 252), rgb(219, 243, 2));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.search-bar {
+    display: flex;
+    margin-top: 20px;
+}
+
+.search-bar input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    background-color: #cac6c6e7;
+}
+
+.search-bar button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    background-color: #8e5096;
+    color: white;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #101213;
+}
+
+.logo {
+    height: 100px;
+}
