@@ -1,88 +1,186 @@
 
-.navbar {
-    position: absolute; /* Position the navbar on top of the image */
-    top: 0;
-    left: 0;
-    right: 0;
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3efef;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    padding: 15px 30px;
-    z-index: 3; /* Ensure it is above the image */
-    color: white; /* White text for contrast */
+    padding: 10px 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgb(180, 81, 15);
+     top: 0;
+    z-index: 10;
 }
 
-/* Navbar link styling */
-.navbar a {
+.logo img {
+    height: 50px; 
+}
+
+.user-controls a {
+    margin-left: 15px;
     text-decoration: none;
-    color: white; /* White text for visibility */
-    padding: 10px;
-    font-size: 18px;
-    font-family: sans-serif;
+    color: #af5010; 
 }
 
-/* Background section styling */
-.part1 {
-    flex: 1;
-    width: 100%;
-    min-height: 100vh; /* Ensure minimum height covers the entire viewport */
+
+.user {
+    margin-right: 10px;
+}
+
+
+@media (max-width: 768px) {
+    .search-bar {
+        flex-direction: column; 
+        margin: 0;
+    }
+    
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-content {
+        font-size: 16px;
+        left: 10px; 
+    }
+}
+
+
+.search-bar input {
+    flex-grow: 1; 
+    padding: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.search-bar select, .search-bar button {
+    padding: 10px;
+    margin-left: 10px; 
+}
+
+
+.hero {
     position: relative;
-    background-image: url('/static/image/home.jpg');
-    background-size: cover; /* Make sure the background image covers the entire container */
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
+    max-width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.hero img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover; 
+}           
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 20px; 
+    transform: translateY(-50%);
+    color: #ffffff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+.book-slider {
+    display: flex;
+    gap: 10px;
+}
+
+.book-slider img {
+    width: 75px;
+    height: 100px;
+    object-fit: cover;
+}
+
+
+.tabs {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 0; /* Remove any default margins */
-}
-
-/* Content styling */
-.part1-content {
-    position: relative;
-    z-index: 2; /* Above background but below navbar */
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-/* Heading styling */
-.part1-content h1 {
-    font-size: 3em;
-    background: linear-gradient(to right, rgb(238, 194, 194), rgb(163, 107, 33));
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-/* Search bar styling */
-.search-bar {
-    display: flex;
-    margin-top: 20px;
-}
-
-.search-bar input[type="text"] {
     padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px 0 0 5px;
-    outline: none;
-    background-color: #cac6c6e7;
+    background-color: #e28c53fd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.search-bar button {
-    padding: 10px;
-    font-size: 16px;
+.tabs button {
+    background-color: transparent;
     border: none;
-    border-radius: 0 5px 5px 0;
-    background-color: #8e5096;
-    color: white;
+    padding: 10px 20px;
     cursor: pointer;
+    font-size: 16px;
 }
 
-.search-bar button:hover {
-    background-color: #101213;
+.tabs button:hover {
+    background-color: #c0805583;
 }
+
+
+.new-arrivals {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.new-arrivals h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+    gap: 178px;
+}
+
+.book-item {
+    background-color: #f9f9f9;
+    padding: 0px;
+    text-align: center;
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-item:hover {
+    transform: translateY(10px); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.book-item img {
+    width: 200px;
+    height: 300px
+    object-fit cover; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;    
+}
+
+.book-item p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.book-item span {
+    font-size: 14px;
+    color: #888;
+}
+
