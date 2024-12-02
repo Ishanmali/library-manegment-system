@@ -95,3 +95,9 @@ body {
 .login-form p a:hover {
     text-decoration: underline;
 }
+.login-form .admin a{
+    color: #333;
+    text-align: right;
+    text-decoration: none;
+
+}

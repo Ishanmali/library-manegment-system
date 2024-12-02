@@ -18,7 +18,14 @@ def register():
 @app.route("/account")
 def account():
     return render_template("account.html")
-   
+
+@app.route("/adminlogin")
+def adminlogin():
+    return render_template("adminlogin.html")  
+      
+@app.route("/admindashbord")
+def admindashbord():
+    return render_template("admindashbord.html")     
 
 
 if __name__ == '__main__':
