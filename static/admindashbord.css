@@ -98,3 +98,8 @@ body {
     font-size: 16px;
     color: #555;
 }
+.sidebar a.active {
+    background-color: #e28c53fd;; /* Highlight color */
+    pointer-events: none; /* Disable click */
+    cursor: not-allowed;
+}
