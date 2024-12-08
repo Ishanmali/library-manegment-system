@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,24 +10,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='book.css') }}">
 </head>
 <body>
-    <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <h2>Librify</h2>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                    <li><a href="books.html" class="active"><i class="fas fa-book"></i> Books</a></li>
-                    <li><a href="students.html"><i class="fas fa-user-graduate"></i> Students</a></li>
-                    <li><a href="staff.html"><i class="fas fa-users"></i> Staff</a></li>
-                    <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                </ul>
-            </nav>
-        </aside>
-
-        <!-- Main Content -->
+    
+    <div class="dashboard-container">   
         <main class="main-content">
             <header class="main-header">
                 <h1>Books Management</h1>
@@ -49,7 +35,7 @@
             </section>
 
             <section class="books-list">
-                <table>
+                <table >
                     <thead>
                         <tr>
                             <th>Book ID</th>
@@ -121,3 +107,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+{% endblock %}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/0259d3fbb7.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='sidebar.css') }}">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h1>Librify Admin</h1>
+        <a href="{{url_for('admindashbord')}}">Dashboard</a>
+        <a href="{{url_for('book')}}"> Books</a>
+        <a href="/loggedin-users" class="menu-item" id="users">Logged-In Users</a>
+        <a href="/logout" class="menu-item" id="logout">Logout</a>
+    </div>
+
+</body>
+</html>

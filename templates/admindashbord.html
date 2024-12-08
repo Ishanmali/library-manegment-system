@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,15 +11,8 @@
 
 </head>
 <body>
-    <div class="sidebar">
-        <h1>Librify Admin</h1>
-        <a href="/dashboard" class="menu-item" id="dashboard">Dashboard</a>
-        <a href="/books" class="menu-item" id="books">Books</a>
-        <a href="/loggedin-users" class="menu-item" id="users">Logged-In Users</a>
-        <a href="/logout" class="menu-item" id="logout">Logout</a>
-    </div>
-    
 
+    
     <div class="main-content">
         <div class="header">
             <h2>Dashboard</h2>
@@ -59,4 +54,4 @@
     </div>
 </body>
 </html>
-
+{% endblock %}
