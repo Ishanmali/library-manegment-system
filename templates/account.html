@@ -1,35 +1,46 @@
 {% block content %}
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-9">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>create account</title>
+    <title>Create Account</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='account.css') }}">
-  </head>
-  <body >
+</head>
+<body>
     <div class="login-container">
-      <div class="login-form">
-        
-          <h2>Create Account</h2>
-          <form action="#" method="POST">
-              <label for="username">Username :</label>
-              <input type="text" id="username" name="username" placeholder="Enter your username" required>
+        <div class="login-form">
+            <h2>Create Account</h2>
 
-              <label for="Email">email:</label>
-              <input type="email" id="email" name="email" placeholder="Enter your Email" required>
-              
-              <label for="password">Password :</label>
-              <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="flash-message {{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
 
-              <label for="password">Conform Password :</label>
-              <input type="password" id="password" name="password2" placeholder="Enter password again" required>
+            <!-- Account Creation Form -->
+            <form action="{{ url_for('account') }}" method="POST">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
-              <button type="submit">Create </button>
-          </form>
-          
-      </div>
-  </div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                <label for="password2">Confirm Password:</label>
+                <input type="password" id="password2" name="password2" placeholder="Confirm your password" required>
+
+                <button type="submit">Create</button>
+            </form>
+        </div>
+    </div>
+</body>
 </html>
 {% endblock %}

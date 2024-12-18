@@ -13,11 +13,24 @@
           <img src="{{ url_for('static', filename='image/123.png') }}" alt="logo">
 
             <h2>Login</h2>
-            <form action="#" method="POST">
-                <label for="username">Username :</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username" required>
-                
-                <label for="password">Password :</label>
+            
+            <!-- Display Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            
+            <!-- Form for Login -->
+            <form action="{{ url_for('login') }}" method="POST">
+                <label for="username">Email:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your email" required>
+
+                <label for="password">Password:</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
                 <div class="forgot-password">
@@ -27,13 +40,14 @@
                 <button type="submit">Login</button>
             </form>
             <br>
-            <p>Don't have an account? <a href="{{url_for('account')}}"><b>Create Account </b></a></p>
+            <p>Don't have an account? <a href="{{url_for('account')}}"><b>Create Account</b></a></p>
             <br>
-                <div class="admin"
-                  <p> <a href="{{url_for('admindashbord')}}">  Admin </a> </p>
-                </div>
+            <div class="admin">
+                
+            </div>
         </div>
     </div>
 </body>
 </html>
 {% endblock %}
+

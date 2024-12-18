@@ -14,9 +14,15 @@
         <img src="{{ url_for('static', filename='image/123.png') }}" alt="logo" style="height: 45px;">
 
     </div>
-    <div class="user-controls">
-        <a href="{{url_for('account')}}"><b>Create Account </b></a>
-        <a href="{{url_for('login')}}"><b>Login</b></a>
+    <div class="user-controls">     
+        {% if 'email' in session %}
+           <a href="{{url_for('logout')}}"><b>Logout</b></a>
+        {% else %}  
+            <a href="{{url_for('login')}}"><b>Login</b></a>
+        {% endif %}
+            <a href="{{url_for('account')}}"><b>Create Account </b></a>
+        
+        <a href="{{url_for('adminlogin')}}"><b>Admin</b></a>
         
     </div>
 </header>
@@ -48,7 +54,7 @@
 <section class="new-arrivals">
     
 <table> 
-    <h2>farmous</h2>
+    <h2>Famous</h2>
     <div class="book-grid">
         
         <div class="book-item">
@@ -88,7 +94,7 @@
         
     </div>
   
-  <h2>new</h2> 
+  <h2>New</h2> 
   
     <div class="book-grid">
         
