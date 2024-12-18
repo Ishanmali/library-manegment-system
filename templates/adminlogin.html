@@ -10,10 +10,10 @@
 <body>
     <div class="login-container">
         <div class="login-form">
-            <img src="{{ url_for('static', filename='image/123.png') }}" alt="logo">
+            
             <h2>Admin Login</h2>
             
-            <!-- Flash Messages -->
+           
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     <div class="flash-messages">
@@ -24,7 +24,7 @@
                 {% endif %}
             {% endwith %}
 
-            <!-- Admin Login Form -->
+           
             <form action="{{ url_for('adminlogin') }}" method="POST">
                 <label for="username">Email:</label>
                 <input type="text" id="username" name="username" placeholder="Enter your email" required>

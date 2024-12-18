@@ -81,15 +81,15 @@ def account():
 @app.route("/adminlogin", methods=['GET', 'POST'])
 def adminlogin():
     
-    admin_email = "admin@librify.com"
-    admin_password = "admin123"
+    admin_email = "admin123@gmail.com"
+    admin_pass = "admin123"
 
     if request.method == 'POST':
         email = request.form['username']
         password = request.form['password']
 
     
-        if email == admin_email and password == admin_password:
+        if email == admin_email and password == admin_pass:
             session['admin'] = True 
             flash('Welcome, Admin!', category='success')
             return redirect(url_for('admindashbord'))
@@ -100,7 +100,7 @@ def adminlogin():
 
 @app.route("/admindashbord")
 def admindashbord():
-    if 'admin' not in session:  # Check if admin is logged in
+    if 'admin' not in session:  
         flash('Please log in as an admin first!', category='error')
         return redirect(url_for('adminlogin'))
     return render_template("admindashbord.html")
