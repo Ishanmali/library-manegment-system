@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -6,105 +7,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books Management</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='book.css') }}">
+    <script src="{{ url_for('static', filename='js/book.js') }}" defer></script>
 </head>
 <body>
-    
-    <div class="dashboard-container">   
-        <main class="main-content">
-            <header class="main-header">
-                <h1>Books Management</h1>
-            </header>
-
-            <section class="books-actions">
-                <div class="action-buttons">
-                    <button id="addBookBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Book</button>
-                    <input type="text" id="searchBar" placeholder="Search books...">
-                </div>
-                <div class="filters">
-                    <label for="genreFilter">Filter by Genre:</label>
-                    <select id="genreFilter">
-                        <option value="">All</option>
-                        <option value="Fiction">Fiction</option>
-                        <option value="Non-Fiction">Non-Fiction</option>
-                        <option value="Science">Science</option>
-                        <option value="History">History</option>
-                    </select>
-                </div>
-            </section>
-
-            <section class="books-list">
-                <table >
-                    <thead>
-                        <tr>
-                            <th>Book ID</th>
-                            <th>Title</th>
-                            <th>Author</th>
-                            <th>Genre</th>
-                            <th>Copies Available</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Sample row -->
-                        <tr>
-                            <td>1</td>
-                            <td>The Great Gatsby</td>
-                            <td>F. Scott Fitzgerald</td>
-                            <td>Fiction</td>
-                            <td>10</td>
-                            <td>Available</td>
-                            <td>
-                                <button class="btn btn-edit"><i class="fas fa-edit"></i> Edit</button>
-                                <button class="btn btn-delete"><i class="fas fa-trash"></i> Delete</button>
-                            </td>
-                        </tr>
-                        <!-- Additional rows will be dynamically added -->
-                    </tbody>
-                </table>
-            </section>
-
-            <!-- Modal for Adding/Editing Books -->
-            <div id="bookModal" class="modal hidden">
-                <div class="modal-content">
-                    <h2 id="modalTitle">Add New Book</h2>
-                    <form id="bookForm">
-                        <label for="bookTitle">Title:</label>
-                        <input type="text" id="bookTitle" name="bookTitle" required>
-
-                        <label for="bookAuthor">Author:</label>
-                        <input type="text" id="bookAuthor" name="bookAuthor" required>
-
-                        <label for="bookGenre">Genre:</label>
-                        <select id="bookGenre" name="bookGenre" required>
-                            <option value="Fiction">Fiction</option>
-                            <option value="Non-Fiction">Non-Fiction</option>
-                            <option value="Science">Science</option>
-                            <option value="History">History</option>
-                        </select>
-
-                        <label for="bookCopies">Number of Copies:</label>
-                        <input type="number" id="bookCopies" name="bookCopies" min="1" required>
-
-                        <label for="bookStatus">Status:</label>
-                        <select id="bookStatus" name="bookStatus">
-                            <option value="Available">Available</option>
-                            <option value="Borrowed">Borrowed</option>
-                        </select>
-
-                        <div class="modal-actions">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                            <button type="button" id="cancelBtn" class="btn btn-secondary">Cancel</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </main>
+    <div class="books-container">
+        <h2>Books Management</h2>
+        <div class="actions">
+            
+            <button class="add-book-btn">+ Add New Book</button>
+            <input type="text" id="search-box" placeholder="Search books..." />
+            <select id="genre-filter">
+                <option value="all">Filter by Genre: All</option>
+                <option value="fiction">Fiction</option>
+                <option value="non-fiction">Non-Fiction</option>
+                <option value="science">Science</option>
+                <option value="biography">Biography</option>
+            </select>
+        </div>
+        <table class="books-table">
+            <thead>
+                <tr>
+                    <th>Book ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Copies</th>
+                    <th>Available</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example row -->
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><span class="status available">Available<
+                        /span></td>
+                    <td>
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='book.js') }}"></script>
 </body>
 </html>
 {% endblock %}
+
