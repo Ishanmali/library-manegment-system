@@ -38,6 +38,8 @@ h2 {
 .books-table {
     width: 100%;
     border-collapse: collapse;
+    position: absolute;
+    align-self: auto;
 }
 
 .books-table th, .books-table td {

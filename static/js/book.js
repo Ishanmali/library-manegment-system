@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const genreFilter = document.getElementById("genre-filter");
     const bookRows = document.querySelectorAll(".books-table tbody tr");
 
-    // Filter books by search or genre
+  
     function filterBooks() {
         const searchText = searchBox.value.toLowerCase();
         const selectedGenre = genreFilter.value;
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cancelAddBookBtn = document.getElementById("cancel-add-book");
     const addBookForm = document.getElementById("add-book-form");
 
-    // Show/hide the inline form
+  
     toggleAddBookFormBtn.addEventListener("click", () => {
         if (addBookFormContainer.classList.contains("hidden")) {
             addBookFormContainer.classList.remove("hidden");
@@ -39,30 +39,29 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Hide the form when cancel is clicked
+    
     cancelAddBookBtn.addEventListener("click", () => {
         addBookFormContainer.classList.add("hidden");
         toggleAddBookFormBtn.textContent = "+ Add New Book";
     });
 
-    // Handle form submission
     addBookForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        // Collect form data
+      
         const title = document.getElementById("title").value;
         const author = document.getElementById("author").value;
         const genre = document.getElementById("genre").value;
         const copies = document.getElementById("copies").value;
         const status = document.getElementById("status").value;
 
-        // Validate data
+        
         if (!title || !author || !genre || !copies || !status) {
             alert("Please fill out all fields.");
             return;
         }
 
-        // Add new row to the table dynamically
+ 
         const bookTableBody = document.getElementById("book-table-body");
         const newRow = document.createElement("tr");
 
@@ -80,10 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
         bookTableBody.appendChild(newRow);
 
-        // Reset the form
+        
         addBookForm.reset();
 
-        // Hide the form
+   
         addBookFormContainer.classList.add("hidden");
         toggleAddBookFormBtn.textContent = "+ Add New Book";
     });
