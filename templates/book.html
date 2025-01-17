@@ -15,7 +15,7 @@
         <h2>Books Management</h2>
         <div class="actions">
             
-            <button class="add-book-btn">+ Add New Book</button>
+            <a href="{{url_for('bookup')}}"> <button class="add-book-btn">+ Add New Book</button>  </a>
             <input type="text" id="search-box" placeholder="Search books..." />
             <select id="genre-filter">
                 <option value="all">Filter by Genre: All</option>
@@ -25,6 +25,7 @@
                 <option value="biography">Biography</option>
             </select>
         </div>
+        <br>
         <table class="books-table">
             <thead>
                 <tr>

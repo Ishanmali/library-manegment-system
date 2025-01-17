@@ -110,6 +110,11 @@ def book():
     return render_template("book.html")
 
 
+@app.route("/book_upload") 
+def bookup():
+    return render_template ("book _upload.html")  
+
+
 @app.route("/logout")
 def logout():
     session.pop('email', None)  

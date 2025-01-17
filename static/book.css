@@ -1,6 +1,11 @@
 
 * .books-container {
-    padding: 20px;
+    position: relative;
+    padding: 0px;
+    align-items: center;
+    margin-top: -430px;
+    margin-left: 275px;
+    margin-right: 40px;
 }
 
 h2 {
