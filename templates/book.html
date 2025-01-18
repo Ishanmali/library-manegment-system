@@ -14,9 +14,10 @@
     <div class="books-container">
         <h2>Books Management</h2>
         <div class="actions">
-            
-            <a href="{{url_for('bookup')}}"> <button class="add-book-btn">+ Add New Book</button>  </a>
-            <input type="text" id="search-box" placeholder="Search books..." />
+            <a href="{{ url_for('bookup') }}">
+                <button class="add-book-btn">+ Add New Book</button>
+            </a>
+            <input type="text" id="search-box" placeholder="Search books...">
             <select id="genre-filter">
                 <option value="all">Filter by Genre: All</option>
                 <option value="fiction">Fiction</option>
@@ -25,7 +26,6 @@
                 <option value="biography">Biography</option>
             </select>
         </div>
-        <br>
         <table class="books-table">
             <thead>
                 <tr>
@@ -40,25 +40,24 @@
                 </tr>
             </thead>
             <tbody>
-             
+                <!-- Example row -->
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>1</td>
+                    <td>The Great Gatsby</td>
+                    <td>F. Scott Fitzgerald</td>
+                    <td>Fiction</td>
+                    <td>5</td>
+                    <td>3</td>
                     <td><span class="status available">Available</span></td>
                     <td>
                         <button class="edit-btn">Edit</button>
                         <button class="delete-btn">Delete</button>
                     </td>
                 </tr>
+                <!-- Additional rows can be added dynamically -->
             </tbody>
         </table>
     </div>
-    <script src="{{ url_for('static', filename='book.js') }}"></script>
 </body>
 </html>
 {% endblock %}
-

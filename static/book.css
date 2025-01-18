@@ -1,31 +1,42 @@
-
-* .books-container {
-    position: relative;
-    padding: 0px;
-    align-items: center;
-    margin-top: -430px;
-    margin-left: 275px;
-    margin-right: 40px;
+/* General container styling */
+.books-container {
+    max-width: calc(100% - 250px); /* Accounts for the sidebar width */
+    margin: -420px auto;
+    margin-left: 260px; /* Matches the sidebar width */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Center the heading */
 h2 {
     text-align: center;
     color: #333;
+    margin-bottom: 20px;
 }
 
+/* Styling the actions bar */
 .actions {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    align-items: center;
+    margin-bottom: 60px;
 }
 
 .add-book-btn {
     background-color: #4caf50;
     color: white;
-    padding: 10px 15px;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.add-book-btn:hover {
+    background-color: #45a049;
 }
 
 #search-box {
@@ -36,26 +47,37 @@ h2 {
 }
 
 #genre-filter {
-    padding: 8px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 14px;
 }
 
+/* Styling the table */
 .books-table {
     width: 100%;
     border-collapse: collapse;
-    position: absolute;
-    align-self: auto;
+    margin-top: 20px;
 }
 
 .books-table th, .books-table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px;
     text-align: center;
 }
 
 .books-table th {
     background-color: #f4f4f4;
     color: #333;
+    font-weight: bold;
+}
+
+.books-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.books-table tr:hover {
+    background-color: #f1f1f1;
 }
 
 .status.available {
@@ -69,10 +91,11 @@ h2 {
 }
 
 .edit-btn, .delete-btn {
-    padding: 5px 10px;
+    padding: 6px 12px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 14px;
 }
 
 .edit-btn {
@@ -80,9 +103,15 @@ h2 {
     color: white;
 }
 
+.edit-btn:hover {
+    background-color: #45a049;
+}
+
 .delete-btn {
     background-color: #f44336;
     color: white;
 }
 
-
+.delete-btn:hover {
+    background-color: #e53935;
+}
