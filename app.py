@@ -5,7 +5,8 @@ import bcrypt
 
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///CreateAccount.db' 
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///CreateAccount.db'
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///books.db'
 app.secret_key = "hjghjdhjhuhgjbhj52" 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -26,6 +27,12 @@ class CreateAccount(db.Model):
     def check_password(self, password):
        
         return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
+
+
+class book_upload(db.Model):
+    __tablename__="books"
+
+
 
 
 @app.route("/")
