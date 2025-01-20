@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, redirect, request, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from werkzeug.utils import secure_filename
 import bcrypt
 
 
@@ -30,12 +31,12 @@ class CreateAccount(db.Model):
 
 
 class book_upload(db.Model):
-    __tablename__="books"
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100))
-    author = db.Column(db.String(100))
-    genre = db.Column(db.String(100))
-    number= db.Column(db.String(100))
+    title = db.Column(db.String(100), nullable=False)
+    author = db.Column(db.String(100), nullable=False)
+    genre = db.Column(db.String(50), nullable=False)
+    copies = db.Column(db.Integer, nullable=False)
+    pdf_path = db.Column(db.String(200), nullable=False)
 
 
 
