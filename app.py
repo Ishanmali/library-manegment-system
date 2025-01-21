@@ -6,6 +6,9 @@ import bcrypt
 
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'static/bookupload'  # Folder to save PDFs
+app.config['ALLOWED_EXTENSIONS'] = {'pdf'}
+
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///CreateAccount.db'
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///books.db'
 app.secret_key = "hjghjdhjhuhgjbhj52" 
