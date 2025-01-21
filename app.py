@@ -126,8 +126,15 @@ def book():
     return render_template("book.html")
 
 
-@app.route("/book_upload") 
+@app.route('/book_upload', methods=['GET', 'POST'])
 def book_upload():
+    if request.method =='POST': 
+        title = request.form[title]    
+        author =request.form[author]
+        genre = request.form[genre]
+        copies = request.form[copies]
+        pdf_path = request.form[book_pdf]
+
     return render_template ("book _upload.html")  
 
 
