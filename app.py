@@ -6,7 +6,7 @@ import bcrypt
 
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'static/bookupload'  # Folder to save PDFs
+app.config['UPLOAD_FOLDER'] = 'static/books' 
 app.config['ALLOWED_EXTENSIONS'] = {'pdf'}
 
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///CreateAccount.db'
@@ -135,7 +135,29 @@ def book_upload():
         copies = request.form[copies]
         pdf_path = request.form[book_pdf]
 
-    return render_template ("book _upload.html")  
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            
+           
+            new_book = Book(
+                title=title,
+                author=author,
+                genre=genre,
+                copies=copies,
+                pdf_path=os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            )
+            db.session.add(new_book)
+            db.session.commit()
+            
+            flash('Book added successfully!')
+            return redirect(url_for('books'))
+        else:
+            flash('Invalid file type. Please upload a PDF.')
+    
+    return render_template('book _upload.html')
+
+   
 
 
 @app.route("/logout")
