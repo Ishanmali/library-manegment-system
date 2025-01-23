@@ -14,9 +14,14 @@
     <div class="books-container">
         <h2>Books Management</h2>
         <div class="actions">
-            <a href="{{ url_for('book_upload') }}">
+
+            
+            
+            <a href="{{ url_for('uploadbook) }}">
                 <button class="add-book-btn">+ Add New Book</button>
             </a>
+
+        
             <input type="text" id="search-box" placeholder="Search books...">
             <select id="genre-filter">
                 <option value="all">Filter by Genre: All</option>

@@ -28,7 +28,7 @@ class CreateAccount(db.Model):
     def check_password(self, password):
         return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
 
-class book_upload(db.Model):
+class bookupload(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     author = db.Column(db.String(100), nullable=False)
@@ -114,20 +114,23 @@ def admindashbord():
 def book():
     return render_template("book.html")
 
-@app.route('/upload_book', methods=['GET', 'POST'])
-def upload_book():
-    if request.method == 'POST':
-        title = request.form['title']
+@app.route('/bookupload', methods=['GET', 'POST'])
+def bookupload():  # Renamed function to avoid conflict
+    if request.method == 'POST': 
+        # Retrieve form data
+        title = request.form['title']    
         author = request.form['author']
         genre = request.form['genre']
-        copies = request.form['copies']
-        file = request.files['book_pdf']
+        copies = int(request.form['copies'])  # Convert copies to an integer
+        file = request.files['book_pdf']  # For the uploaded file
 
+        # Check if the file is allowed (a valid PDF)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
-            new_book = book_upload(
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))  # Save file to static/books
+            
+            # Create a new book instance and save it to the database
+            new_book = bookupload(  # Using the model class here
                 title=title,
                 author=author,
                 genre=genre,
@@ -136,13 +139,14 @@ def upload_book():
             )
             db.session.add(new_book)
             db.session.commit()
-
-            flash('Book added successfully!', category='success')
-            return redirect(url_for('book'))
+            
+            flash('Book added successfully!')
+            return redirect(url_for('book'))  # Redirect to the book management page
         else:
-            flash('Invalid file type. Please upload a PDF.', category='error')
+            flash('Invalid file type. Please upload a PDF.')
+    
+    return render_template('bookupload')
 
-    return render_template('book_upload.html')
 
 @app.route("/logout")
 def logout():
@@ -152,3 +156,4 @@ def logout():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
