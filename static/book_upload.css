@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #eeecea;
+    background-color: #adaaa7;
     margin: 0;
     padding: 0;
     display: flex;
@@ -15,8 +15,12 @@ form h2 {
     margin-bottom:20px;
     margin-left: 100px;
 }
+form div input{
+    width: 380px;
+}
 
 form {
+    align-self:auto;
     background-color: #fff;
     padding: 20px 30px;
     border-radius: 10px;
