@@ -1,6 +1,3 @@
-{% extends 'base.html' %}
-
-{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,14 +11,9 @@
     <div class="books-container">
         <h2>Books Management</h2>
         <div class="actions">
-
-            
-            
-            <a href="{{ url_for('uploadbook) }}">
+            <a href="{{ url_for('bookupload') }}"> <!-- Updated link -->
                 <button class="add-book-btn">+ Add New Book</button>
             </a>
-
-        
             <input type="text" id="search-box" placeholder="Search books...">
             <select id="genre-filter">
                 <option value="all">Filter by Genre: All</option>
@@ -45,24 +37,23 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Example row -->
+                {% for book in books %} <!-- Dynamic table update -->
                 <tr>
-                    <td>1</td>
-                    <td>The Great Gatsby</td>
-                    <td>F. Scott Fitzgerald</td>
-                    <td>Fiction</td>
-                    <td>5</td>
-                    <td>3</td>
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.genre }}</td>
+                    <td>{{ book.copies }}</td>
+                    <td>{{ book.copies }}</td>
                     <td><span class="status available">Available</span></td>
                     <td>
                         <button class="edit-btn">Edit</button>
                         <button class="delete-btn">Delete</button>
                     </td>
                 </tr>
-                <!-- Additional rows can be added dynamically -->
+                {% endfor %}
             </tbody>
         </table>
     </div>
 </body>
 </html>
-{% endblock %}

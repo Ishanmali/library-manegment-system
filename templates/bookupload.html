@@ -9,7 +9,6 @@
 <body>
 
     <form action="{{ url_for('bookupload') }}" method="POST" enctype="multipart/form-data">
-        
         <h2>Add New Book</h2>
      <div>
         <label for="title">Book Title:</label>
@@ -24,9 +23,9 @@
             <option value="Non-Fiction">Non-Fiction</option>
             <option value="Science">Science</option>
             <option value="Biography">Biography</option>
-            <option value="Fiction">Adventure</option>
-            <option value="Fiction">ICT</option>
-            <option value="Fiction">Novel</option>
+            <option value="Adventure">Adventure</option>
+            <option value="ICT">ICT</option>
+            <option value="Novel">Novel</option>
         </select>
         
         <label for="copies">Number of Copies:</label>
