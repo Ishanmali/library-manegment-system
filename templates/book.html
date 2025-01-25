@@ -1,10 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books Management</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='book.css') }}">
+    
     <script src="{{ url_for('static', filename='js/book.js') }}" defer></script>
 </head>
 <body>
@@ -37,7 +39,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for book in books %} <!-- Dynamic table update -->
+                {% for book in books %} 
                 <tr>
                     <td>{{ book.id }}</td>
                     <td>{{ book.title }}</td>
@@ -57,3 +59,4 @@
     </div>
 </body>
 </html>
+{% endblock %}

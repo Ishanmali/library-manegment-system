@@ -1,27 +1,27 @@
-/* General container styling */
+
 .books-container {
-    max-width: calc(100% - 250px); /* Accounts for the sidebar width */
-    margin: -420px auto;
-    margin-left: 260px; /* Matches the sidebar width */
+    max-width: calc(100% - 250px); 
+    margin: 20px auto; 
+    margin-left: 260px; 
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Center the heading */
+
 h2 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
 }
 
-/* Styling the actions bar */
+
 .actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 60px;
+    margin-bottom: 20px; 
 }
 
 .add-book-btn {

@@ -112,8 +112,11 @@ def admindashbord():
 
 @app.route("/book")
 def book():
+    print("Rendering book.html")
     books = Book.query.all()  # Fetch all books
     return render_template("book.html", books=books)
+
+    
 
 @app.route('/bookupload', methods=['GET', 'POST'])
 def bookupload():  
