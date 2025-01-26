@@ -18,3 +18,49 @@
 <script>
     const x =document.getElementById("mycanva");
     const y =x.getContext("2d");
+
+     
+   class move{
+     constructor(color,x,y,high,width){
+         this.color=color;
+         this.x=x;
+         this.y=y;
+         this.high=high;
+         this.width=width;
+ 
+         this.speedx=0;
+         this.speedy=0;
+     }
+     drow(){
+         this.x+= this.speedx;
+         this.y+= this.speedy;
+ 
+         y.fillStyle = this.color;
+         y.fillRect(this.x , this.y , this.width, this.high);
+     }
+ 
+ 
+   }
+ let box = new move( "black" ,0 ,450 ,100,50)  ;
+ 
+ 
+ 
+    let tf=20
+    let counter=0;
+    let timer = setInterval(function(){
+     //clear fream
+     y.clearRect(0,0,1000,500)
+     
+     box.drow()
+     box.speedx=10 ;
+
+     counter++;
+     y.font="40px  Arial"
+     y.fillText(counter, 0, 400);
+ 
+    },1000/tf);
+ 
+ 
+  </script>
+</body>
+</html>
