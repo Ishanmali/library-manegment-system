@@ -1,14 +1,16 @@
+# Updated app.py
 from flask import Flask, render_template, url_for, redirect, request, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from werkzeug.utils import secure_filename
 import bcrypt
 import os
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/books'
 app.config['ALLOWED_EXTENSIONS'] = {'pdf'}
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///books.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///books.db'
 app.secret_key = "hjghjdhjhuhgjbhj52"
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -28,20 +30,25 @@ class CreateAccount(db.Model):
     def check_password(self, password):
         return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
 
-class Book(db.Model):  # Fixed model name
+class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     author = db.Column(db.String(100), nullable=False)
     genre = db.Column(db.String(50), nullable=False)
     copies = db.Column(db.Integer, nullable=False)
     pdf_path = db.Column(db.String(200), nullable=False)
+    uploaded_date = db.Column(db.DateTime, default=datetime.utcnow)
+
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    # Fetch books for "New" and "Famous" categories dynamically
+    new_books = Book.query.filter(Book.uploaded_date >= datetime.utcnow() - timedelta(days=30)).all()
+    famous_books = Book.query.filter(Book.genre == 'Fiction').limit(5).all()  # Example logic for "Famous"
+    return render_template("home.html", new_books=new_books, famous_books=famous_books)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -61,75 +68,24 @@ def login():
 
     return render_template("login.html")
 
-@app.route("/account", methods=['GET', 'POST'])
-def account():
-    if request.method == 'POST':
-        username = request.form['username']
-        email = request.form['email']
-        password = request.form['password']
-        password2 = request.form['password2']
-
-        existing_user = CreateAccount.query.filter_by(email=email).first()
-        if existing_user:
-            flash('Email is already registered', category='error')
-        elif password != password2:
-            flash('Passwords do not match!', category='error')
-        elif len(password) < 5:
-            flash('Password must have at least 5 characters', category='error')
-        else:
-            new_user = CreateAccount(email=email, username=username, password=password)
-            db.session.add(new_user)
-            db.session.commit()
-            flash('Account created successfully!', category='success')
-            return redirect(url_for('login'))
-
-    return render_template("account.html")
-
-@app.route("/adminlogin", methods=['GET', 'POST'])
-def adminlogin():
-    admin_email = "admin123@gmail.com"
-    admin_pass = "admin123"
-
-    if request.method == 'POST':
-        email = request.form['username']
-        password = request.form['password']
-
-        if email == admin_email and password == admin_pass:
-            session['admin'] = True
-            flash('Welcome, Admin!', category='success')
-            return redirect(url_for('admindashbord'))
-        else:
-            flash('Invalid admin credentials!', category='error')
-
-    return render_template("adminlogin.html")
-
-@app.route("/admindashbord")
-def admindashbord():
-    if 'admin' not in session:
-        flash('Please log in as an admin first!', category='error')
-        return redirect(url_for('adminlogin'))
-    return render_template("admindashbord.html")
-
 @app.route("/book")
 def book():
-    print("Rendering book.html")
     books = Book.query.all()  # Fetch all books
-    return render_template("book.html", books=books)
-
-    
+    genres = {book.genre for book in books}  # Extract unique genres dynamically
+    return render_template("book.html", books=books, genres=genres)
 
 @app.route('/bookupload', methods=['GET', 'POST'])
-def bookupload():  
-    if request.method == 'POST': 
-        title = request.form['title']    
+def bookupload():
+    if request.method == 'POST':
+        title = request.form['title']
         author = request.form['author']
         genre = request.form['genre']
-        copies = int(request.form['copies'])  
+        copies = int(request.form['copies'])
         file = request.files['book_pdf']
 
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))  
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             new_book = Book(
                 title=title,
                 author=author,
@@ -140,7 +96,7 @@ def bookupload():
             db.session.add(new_book)
             db.session.commit()
             flash('Book added successfully!')
-            return redirect(url_for('book'))  
+            return redirect(url_for('book'))
         else:
             flash('Invalid file type. Please upload a PDF.')
     return render_template('bookupload.html')
