@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=5.0">
     <title>Home Page</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
-    
 </head>
 <body>
  <header class="header">
@@ -48,47 +47,29 @@
 </nav>
 
 <section class="new-arrivals">
-    <table> 
-        <h2>Famous</h2>
-        <div class="book-grid">
-            <div class="book-item">
-                <img src="{{ url_for('static', filename='image/b1.jpg') }}" alt="Book 1">
-                <p></p>
-                <span></span>
-            </div>
-            <div class="book-item">
-                <img src="{{ url_for('static', filename='image/bk1.jpg') }}" alt="Book 2">
-                <p></p>
-            </div>
-            <div class="book-item">
-                <img src="{{ url_for('static', filename='image/bk2.jpg') }}" alt="Book 6">
-                <p>Title 6</p>
-            </div>
-            <div class="book-item">
-                <img src="{{ url_for('static', filename='image/bk1.jpg') }}" alt="Book 7">
-                <p>Title 7</p>
-            </div>
+    <h2>New Arrivals</h2>
+    <div class="book-grid">
+        {% for book in new_books %}
+        <div class="book-item">
+            <img src="{{ url_for('static', filename=book.cover_image) }}" alt="{{ book.title }}">
+            <p>{{ book.title }}</p>
+            <span>{{ book.author }}</span>
         </div>
-        <h2>New</h2> 
-        <div class="book-grid">
-            <div class="book-item">
-                <img src="{{ url_for('static', filename='image/b1.jpg') }}" alt="Book 1">
-                <p>Title 1</p>
-            </div>
-            <div class="book-item">
-                <img src="{{ url_for('static', filename='image/bk1.jpg') }}" alt="Book 2">
-                <p>Title 2</p>
-            </div>
-            <div class="book-item">
-                <img src="{{ url_for('static', filename='image/bk2.jpg') }}" alt="Book 6">
-                <p>Title 6</p>
-            </div>
-            <div class="book-item">
-                <img src="{{ url_for('static', filename='image/bk1.jpg') }}" alt="Book 7">
-                <p>Title 7</p>
-            </div>
+        {% endfor %}
+    </div>
+
+    {% for genre, books in genre_books.items() %}
+    <h2>{{ genre }}</h2>
+    <div class="book-grid">
+        {% for book in books %}
+        <div class="book-item">
+            <img src="{{ url_for('static', filename=book.cover_image) }}" alt="{{ book.title }}">
+            <p>{{ book.title }}</p>
+            <span>{{ book.author }}</span>
         </div>
-    </table>
+        {% endfor %}
+    </div>
+    {% endfor %}
 </section>
 </body>
 </html>
