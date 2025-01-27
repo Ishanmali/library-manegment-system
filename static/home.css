@@ -140,7 +140,6 @@ img {
     overflow: hidden; 
 }
 
-
 .book-item::before {
     content: ""; 
     position: absolute;
@@ -153,7 +152,6 @@ img {
     transition: opacity 0.3s ease; 
     border-radius: 5px; 
 }
-
 
 .book-item:hover::before {
     opacity: 1; 
