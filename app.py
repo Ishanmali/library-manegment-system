@@ -7,6 +7,7 @@ import os
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/books'
+app.config['UPLOAD_FOLDER2']= 'static/cover image'
 app.config['ALLOWED_EXTENSIONS'] = {'pdf'}
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///books.db'
 app.secret_key = "hjghjdhjhuhgjbhj52"
@@ -117,7 +118,7 @@ def admindashbord():
 
 @app.route("/book")
 def book():
-    books = Book.query.all()  # Fetch all books
+    books = Book.query.all()  
     return render_template("book.html", books=books)
 
 @app.route('/bookupload', methods=['GET', 'POST'])
@@ -128,13 +129,13 @@ def bookupload():
         genre = request.form['genre']
         copies = int(request.form['copies'])  
         file = request.files['book_pdf']
-        cover_image = request.files['cover_image']  # New: Cover image
+        cover_image = request.files['cover_image']  
 
         if file and allowed_file(file.filename) and cover_image and allowed_file(cover_image.filename):
             filename = secure_filename(file.filename)
             cover_filename = secure_filename(cover_image.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))  
-            cover_image.save(os.path.join(app.config['UPLOAD_FOLDER'], cover_filename))
+            cover_image.save(os.path.join(app.config['UPLOAD_FOLDER2'], cover_filename))
 
             new_book = Book(
                 title=title,
@@ -142,7 +143,7 @@ def bookupload():
                 genre=genre,
                 copies=copies,
                 pdf_path=os.path.join(app.config['UPLOAD_FOLDER'], filename),
-                cover_image=os.path.join(app.config['UPLOAD_FOLDER'], cover_filename),
+                cover_image=os.path.join(app.config['UPLOAD_FOLDER2'], cover_filename),
                 category=genre
             )
             db.session.add(new_book)

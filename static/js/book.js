@@ -1,50 +1,50 @@
 document.addEventListener("DOMContentLoaded", () => {
     const searchBox = document.getElementById("search-box");
-    const genreFilter = document.getElementById("genre-filter");
+    const Filter = document.getElementById("genre-filter");
     const bookRows = document.querySelectorAll(".books-table tbody tr");
 
     function filterBooks() {
         const searchText = searchBox.value.toLowerCase();
-        const selectedGenre = genreFilter.value;
+        const Genre = Filter.value;
 
         bookRows.forEach(row => {
             const title = row.children[1].textContent.toLowerCase();
             const genre = row.children[3].textContent.toLowerCase();
 
             const matchesSearch = title.includes(searchText);
-            const matchesGenre = selectedGenre === "all" || genre === selectedGenre;
+            const matche= Genre === "all" || genre === Genre;
 
-            row.style.display = matchesSearch && matchesGenre ? "" : "none";
+            row.style.display = matchesSearch && matche ? "" : "none";
         });
     }
 
     searchBox.addEventListener("input", filterBooks);
-    genreFilter.addEventListener("change", filterBooks);
+    Filter.addEventListener("change", filterBooks);
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    const toggleAddBookFormBtn = document.getElementById("toggle-add-book-form");
-    const addBookFormContainer = document.getElementById("add-book-form-container");
-    const cancelAddBookBtn = document.getElementById("cancel-add-book");
+    const AddBookBtn = document.getElementById("toggle-add-book-form");
+    const BookContainer = document.getElementById("add-book-form-container");
+    const cancelBtn = document.getElementById("cancel-add-book");
     const addBookForm = document.getElementById("add-book-form");
 
    
-    if (toggleAddBookFormBtn && addBookFormContainer) {
-        toggleAddBookFormBtn.addEventListener("click", () => {
-            if (addBookFormContainer.classList.contains("hidden")) {
-                addBookFormContainer.classList.remove("hidden");
-                toggleAddBookFormBtn.textContent = "- Cancel Adding Book";
+    if (AddBookBtn && BookContainer) {
+        AddBookBtn.addEventListener("click", () => {
+            if (BookContainer.classList.contains("hidden")) {
+                BookContainer.classList.remove("hidden");
+                AddBookBtn.textContent = "- Cancel Adding Book";
             } else {
-                addBookFormContainer.classList.add("hidden");
-                toggleAddBookFormBtn.textContent = "+ Add New Book";
+                BookContainer.classList.add("hidden");
+                AddBookBtn.textContent = "+ Add New Book";
             }
         });
     }
 
-    if (cancelAddBookBtn) {
-        cancelAddBookBtn.addEventListener("click", () => {
-            addBookFormContainer.classList.add("hidden");
-            toggleAddBookFormBtn.textContent = "+ Add New Book";
+    if (cancelBtn ) {
+        cancelBtn .addEventListener("click", () => {
+            BookContainer.classList.add("hidden");
+            AddBookBtn.textContent = "+ Add New Book";
         });
     }
 
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            const bookTableBody = document.getElementById("book-table-body");
+            const bookTable = document.getElementById("book-table-body");
             const newRow = document.createElement("tr");
 
             newRow.innerHTML = `
@@ -79,12 +79,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     <button class="btn delete">Delete</button>
                 </td>
             `;
-            bookTableBody.appendChild(newRow);
+            bookTable.appendChild(newRow);
 
             addBookForm.reset();
 
-            addBookFormContainer.classList.add("hidden");
-            toggleAddBookFormBtn.textContent = "+ Add New Book";
+            BookContainer.classList.add("hidden");
+            AddBookBtn.textContent = "+ Add New Book";
         });
     }
 });
