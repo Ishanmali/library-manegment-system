@@ -7,7 +7,7 @@ import os
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/books'
-app.config['UPLOAD_FOLDER2']= 'static/cover image'
+app.config['UPLOAD_FOLDER2']= 'static/cover_image'
 app.config['ALLOWED_EXTENSIONS'] = {'pdf'}
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///books.db'
 app.secret_key = "hjghjdhjhuhgjbhj52"
