@@ -16,3 +16,36 @@
         .then(function (response) {
             return response.json();
         })
+        then((json) => {
+            console.log(json);
+            json.forEach(function(post) {
+                let li = document.createElement("li");
+                li.innerHTML = post.id + " - " +post.title;
+                li.addEventListener("click", function () {
+                    loadData(post.id);
+                });
+                list.appendChild(li);
+            });
+        });
+
+    function loadData(id) {
+        fetch(url + "/" + id, {
+            method: "GET",
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then((json) => {
+                console.log(json);
+                data.innerHTML = "<b>" + json.title + "</b>";
+                data.innerHTML += "<br>";
+                data.innerHTML += json.body;
+            });
+    }      
+</script>
+
+<body>
+
+</body>
+
+</html>
