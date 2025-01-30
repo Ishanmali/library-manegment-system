@@ -36,7 +36,7 @@ class Book(db.Model):  # Fixed model name
     genre = db.Column(db.String(50), nullable=False)
     copies = db.Column(db.Integer, nullable=False)
     pdf_path = db.Column(db.String(200), nullable=False)
-    cover_image = db.Column(db.String(200), nullable=False)
+    cover_image = db.Column(db.String(200), nullable=True) 
     category = db.Column(db.String(50), nullable=False)
 
 def allowed_file(filename):
