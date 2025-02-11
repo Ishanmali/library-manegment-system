@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Fixed initial-scale -->
     <title>Home Page</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
 </head>
@@ -51,7 +51,7 @@
     <div class="book-grid">
         {% for book in new_books %}
         <div class="book-item">
-            <img src="{{ url_for('static', filename=book.cover_image) }}" alt="{{ book.title }}">
+            <img src="{{ url_for('static', filename=book.cover_image) if book.cover_image else url_for('static', filename='image/default_cover.jpg') }}" alt="{{ book.title }}">
             <p>{{ book.title }}</p>
             <span>{{ book.author }}</span>
         </div>
@@ -63,7 +63,7 @@
     <div class="book-grid">
         {% for book in books %}
         <div class="book-item">
-            <img src="{{ url_for('static', filename=book.cover_image) }}" alt="{{ book.title }}">
+            <img src="{{ url_for('static', filename=book.cover_image) if book.cover_image else url_for('static', filename='image/default_cover.jpg') }}" alt="{{ book.title }}">
             <p>{{ book.title }}</p>
             <span>{{ book.author }}</span>
         </div>
