@@ -1,13 +1,13 @@
-from flask import Flask, render_template, url_for, redirect, request, session, flash
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, url_for, redirect, request, session, flash 
+from flask_sqlalchemy import SQLAlchemy 
+from werkzeug.utils import secure_filename 
 from flask_migrate import Migrate
-from werkzeug.utils import secure_filename
-import bcrypt
+import bcrypt 
 import os
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/books'
-app.config['UPLOAD_FOLDER2']= 'static/cover_image'
+app.config['UPLOAD_FOLDER2'] = 'static/cover_image'  # Folder for cover images
 app.config['ALLOWED_EXTENSIONS'] = {'pdf'}
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///books.db'
 app.secret_key = "hjghjdhjhuhgjbhj52"
@@ -29,15 +29,14 @@ class CreateAccount(db.Model):
     def check_password(self, password):
         return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
 
-class Book(db.Model):  # Fixed model name
+class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     author = db.Column(db.String(100), nullable=False)
     genre = db.Column(db.String(50), nullable=False)
     copies = db.Column(db.Integer, nullable=False)
     pdf_path = db.Column(db.String(200), nullable=False)
-    cover_image = db.Column(db.String(200), nullable=True) 
-    category = db.Column(db.String(50), nullable=False)
+    cover_image = db.Column(db.String(200), nullable=True)  # Relative path to cover image
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
@@ -131,7 +130,7 @@ def bookupload():
         file = request.files['book_pdf']
         cover_image = request.files['cover_image']  
 
-        if file and allowed_file(file.filename) and cover_image and allowed_file(cover_image.filename):
+        if file and allowed_file(file.filename) and cover_image:
             filename = secure_filename(file.filename)
             cover_filename = secure_filename(cover_image.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))  
@@ -143,8 +142,7 @@ def bookupload():
                 genre=genre,
                 copies=copies,
                 pdf_path=os.path.join(app.config['UPLOAD_FOLDER'], filename),
-                cover_image=os.path.join(app.config['UPLOAD_FOLDER2'], cover_filename),
-                category=genre
+                cover_image=os.path.join('cover_image', cover_filename),  # Save only the relative path
             )
             db.session.add(new_book)
             db.session.commit()
