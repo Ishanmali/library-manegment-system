@@ -128,7 +128,8 @@ def bookupload():
         genre = request.form['genre']
         copies = int(request.form['copies'])  
         file = request.files['book_pdf']
-        cover_image = request.files['cover_image']  
+        cover_image = request.files['cover_image'] 
+            print(f"Received: {title}, {author}, {genre}, {copies}") 
 
         if file and allowed_file(file.filename) and cover_image:
             filename = secure_filename(file.filename)
