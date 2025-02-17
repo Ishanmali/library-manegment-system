@@ -1,16 +1,22 @@
-from flask import Flask, render_template, url_for, redirect, request, session, flash 
-from flask_sqlalchemy import SQLAlchemy 
-from werkzeug.utils import secure_filename 
-from flask_migrate import Migrate
-import bcrypt 
+from flask import Flask, render_template, url_for, redirect, request, session, flash
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate 
+from werkzeug.utils import secure_filename
+import bcrypt
 import os
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/books'
-app.config['UPLOAD_FOLDER2'] = 'static/cover_image'  # Folder for cover images
-app.config['ALLOWED_EXTENSIONS'] = {'pdf'}
+app.config['UPLOAD_FOLDER2'] = 'static/cover_image'
+app.config['ALLOWED_EXTENSIONS_PDF'] = {'pdf'}
+app.config['ALLOWED_EXTENSIONS_IMAGE'] = {'png', 'jpg', 'jpeg', 'gif'}
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///books.db'
 app.secret_key = "hjghjdhjhuhgjbhj52"
+
+# Create upload directories if they don't exist
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+os.makedirs(app.config['UPLOAD_FOLDER2'], exist_ok=True)
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
@@ -36,15 +42,20 @@ class Book(db.Model):
     genre = db.Column(db.String(50), nullable=False)
     copies = db.Column(db.Integer, nullable=False)
     pdf_path = db.Column(db.String(200), nullable=False)
-    cover_image = db.Column(db.String(200), nullable=True)  # Relative path to cover image
+    cover_image = db.Column(db.String(200), nullable=True)
 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+def allowed_pdf(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS_PDF']
+
+def allowed_image(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS_IMAGE']
 
 @app.route("/")
 def home():
-    new_books = Book.query.order_by(Book.id.desc()).limit(10).all()  # Fetch the most recent books
-    genres = ['Fiction', 'Science', 'Biography', 'Adventure', 'ICT', 'Novel']  # Define all genres
+    new_books = Book.query.order_by(Book.id.desc()).limit(10).all()
+    genres = ['Fiction', 'Science', 'Biography', 'Adventure', 'ICT', 'Novel']
     genre_books = {genre: Book.query.filter_by(genre=genre).all() for genre in genres}
     return render_template('home.html', new_books=new_books, genre_books=genre_books)
 
@@ -117,24 +128,27 @@ def admindashbord():
 
 @app.route("/book")
 def book():
-    books = Book.query.all()  
+    books = Book.query.all()
     return render_template("book.html", books=books)
 
 @app.route('/bookupload', methods=['GET', 'POST'])
-def bookupload():  
-    if request.method == 'POST': 
-        title = request.form['title']    
+def bookupload():
+    if request.method == 'POST':
+        title = request.form['title']
         author = request.form['author']
         genre = request.form['genre']
-        copies = int(request.form['copies'])  
+        copies = int(request.form['copies'])
         file = request.files['book_pdf']
-        cover_image = request.files['cover_image'] 
-            print(f"Received: {title}, {author}, {genre}, {copies}") 
+        cover_image = request.files['cover_image']
 
-        if file and allowed_file(file.filename) and cover_image:
-            filename = secure_filename(file.filename)
+        if (file and allowed_pdf(file.filename) and 
+            cover_image and allowed_image(cover_image.filename)):
+            
+            pdf_filename = secure_filename(file.filename)
             cover_filename = secure_filename(cover_image.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))  
+            
+            # Save files
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], pdf_filename))
             cover_image.save(os.path.join(app.config['UPLOAD_FOLDER2'], cover_filename))
 
             new_book = Book(
@@ -142,16 +156,44 @@ def bookupload():
                 author=author,
                 genre=genre,
                 copies=copies,
-                pdf_path=os.path.join(app.config['UPLOAD_FOLDER'], filename),
-                cover_image=os.path.join('cover_image', cover_filename),  # Save only the relative path
+                pdf_path=f"books/{pdf_filename}",
+                cover_image=f"cover_image/{cover_filename}"
             )
+            
             db.session.add(new_book)
             db.session.commit()
             flash('Book added successfully!')
-            return redirect(url_for('book'))  
+            return redirect(url_for('book'))
         else:
-            flash('Invalid file type. Please upload a PDF and an image.')
+            flash('Invalid file types. PDF for book and image (PNG, JPG, JPEG, GIF) for cover required.')
+
     return render_template('bookupload.html')
+
+@app.route("/edit_book/<int:book_id>",methods=['GET','POST'])
+def edit_book(book_id):
+    book= Book.query.get_or_404(book_id)
+
+    if request.method == 'POST':
+        book.titlee = request.form['title']
+        book.author = request.form['author']
+        book.genre = request.form['genre']
+        book.copies = int( request.form['copies'])
+        db.session.commit()
+        flash("book update successfully..." ,"success")
+        return redirect(url_for('book'))
+    
+    return render_template('edit_book.html',book=book)
+  
+
+@app.route("/deleted_book/<int:book_id>",methods=['POST'])
+def delete_book(book_id):
+    book= Book.query.get_or_404(book_id)
+    db.session.delete(book)
+    db.session.commit()
+    flash("book deleted successfully..." ,"success")
+    return redirect(url_for('book'))
+    
+    
 
 @app.route("/logout")
 def logout():
