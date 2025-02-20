@@ -87,4 +87,13 @@ document.addEventListener("DOMContentLoaded", () => {
             AddBookBtn.textContent = "+ Add New Book";
         });
     }
+
+    document.querySelectorAll('.delete-btn').forEach(button =>{
+        button.addEventListener('click' ,(e)=>{
+            if(!confirm("are you sure to delete this book "))
+            {
+                e.preventDefault();
+            }
+        })
+    })
 });

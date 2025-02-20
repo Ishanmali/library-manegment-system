@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='book_upload.css') }}">
+</head>
+<body>
+
+    <form action="{{ url_for('edit_book', book_id=book.id) }}" method="POST">
+        <h2>Edit Book</h2>
+     <div>
+        <label for="title">Book Title:</label>
+        <input autofocus type="text" id="title" name="title" required>
+        
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required>
+        
+        <label for="genre">Genre:</label>
+        <select id="genre" name="genre">
+            option value="Fiction" {% if book.genre == 'Fiction' %}selected{% endif %}>Fiction</option>
+                <option value="Non-Fiction" {% if book.genre == 'Non-Fiction' %}selected{% endif %}>Non-Fiction</option>
+                <option value="Science" {% if book.genre == 'Science' %}selected{% endif %}>Science</option>
+                <option value="Biography" {% if book.genre == 'Biography' %}selected{% endif %}>Biography</option>
+        </select>
+        
+        <label for="copies">Number of Copies:</label>
+        <input type="number" id="copies" name="copies" min="1" required>
+
+        
+        <label for="book_pdf">Upload Book (PDF):</label>
+        <input type="file" id="book_pdf" name="book_pdf" accept="application/pdf" required>
+
+        <label for="cover_image">Upload cover image :</label>
+        <input type="file" name="cover_image" id="cover_image" accept="image/*" required>
+    </div>
+        <button type="submit">Update Book</button>
+    </form>
+</body>
+</html>
