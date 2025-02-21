@@ -27,7 +27,24 @@
     </div>
 </header>
 
-<div class="hero ">
+<div >
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <h1>Welcome to Librify!</h1>
+            <img src="{{ url_for('static', filename='image/ai.jpg') }}" alt="Book 1">
+          </div>
+          <div class="carousel-item">
+            <p>Explore, read, and share a world of books at your fingertips. Join our community and dive into a seamless library experience today.</p>
+            <img src="{{ url_for('static', filename='image/666.jpg') }}" alt="Book 2">
+          </div>
+          <div class="carousel-item">
+            <img src="{{ url_for('static', filename='image/back.jpg') }}" alt="Book 3">
+          </div>
+        </div>
+      </div>
+
+      <!--
     <div class="hero-content">
         <h1>Welcome to Librify!</h1>
         <p>Explore, read, and share a world of books at your fingertips. Join our community and dive into a seamless library experience today.</p>
@@ -38,7 +55,7 @@
         </div>
     </div>
 </div>
-
+-->
 <nav class="tabs ">
     <div class="search-bar">
         <input type="text" placeholder="Search...">  
