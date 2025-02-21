@@ -7,9 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function changeBackgroundImage() {
         const images = [
-            '{{ url_for("static", filename="image/ai.jpg") }}',
-            '{{ url_for("static", filename="image/666.jpg") }}',
-            '{{ url_for("static", filename="image/back.jpg") }}'
+
         ];
 
         let currentIndex = 0;
@@ -28,3 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelector("body").classList.add("loaded");
     }, 1000)
   });
+
+
+
+  
