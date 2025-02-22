@@ -60,12 +60,21 @@ document.addEventListener('DOMContentLoaded', function () {
             new_book.appendChild(book_item);
         })
        })
+       .catch(error => console.error('Error fetching fiction books:', error));
 
 
-       
-    fetch('https://www.googleapis.com/books/v1/volumes?q=new&maxResults=8&key=${myapi}')   
-      
-})
+
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=fiction&maxResults=8&key=${myapi}`)
+       .then(response => response.json())
+       .then(data =>{
+        const book =data.item;
+        book.forEach (book =>{
+            const book_item= Books(book);
+            fiction_books.appendChild(book_item);
+        })
+       })
+       .catch(error => console.error('Error fetching fiction books:', error));
+})   
 
 
 
