@@ -24,7 +24,7 @@
       <a href="{{url_for('adminlogin')}}"><b>Admin</b></a>
     </div>
 </nav>
-<section class="hero">
+<section class="hero ">
   <div class="hero-content">
       <h1>Find the book you're looking for easier to read.</h1>
       <p class="subheading">The most appropriate book site to reach books</p>
@@ -39,6 +39,53 @@
 </section>
 
 <!-- New Books Section -->
+<div class="col-lg-12 container">
+  <div class="col-lg-12 book-category">
+   <h5>New Books</h5>
+  </div>
+  <div class="col-lg-12 book-section">
+     <div class="d-flex align-items-center">
+           <div class="icon col-1">
+                 <button class="arrow-btn"> <i class="ri-arrow-left-wide-line"></i></button>
+           </div>
+           <div class="col-lg-10">
+             <div class="row book-grid" id="new-books">
+                <!-- New books will be dynamically inserted here -->
+             </div>
+            </div>
+            <div class="icon col-1">
+            <button class="arrow-btn"> <i class="ri-arrow-right-wide-line"></i></button>
+           </div>
+     </div>
+  </div>
+</div>
+
+<!-- Genre Sections -->
+<div class="col-lg-12 container">
+  <div class="col-lg-12 book-category">
+   <h5>Fiction</h5>
+  </div>
+  <div class="col-lg-12 book-section">
+     <div class="d-flex align-items-center">
+           <div class="icon col-1">
+                 <button class="arrow-btn"> <i class="ri-arrow-left-wide-line"></i></button>
+           </div>
+           <div class="col-lg-10">
+             <div class="row book-grid" id="fiction-books">
+                <!-- Fiction books will be dynamically inserted here -->
+             </div>
+            </div>
+            <div class="icon col-1">
+            <button class="arrow-btn"> <i class="ri-arrow-right-wide-line"></i></button>
+           </div>
+     </div>
+  </div>
+</div>
+
+
+
+
+<!-- New Books Section 
 <div class="col-lg-12 container">
    <div class="col-lg-12 book-category">
     <h5>New Books</h5>
@@ -63,9 +110,9 @@
             </div>
       </div>
    </div>
-</div>
+</div>   -->
 
-<!-- Genre Sections -->
+<!-- Genre Sections 
 {% for genre, books in genre_books.items() %}
 <div class="col-lg-12 container">
    <div class="col-lg-12 book-category">
@@ -91,7 +138,7 @@
       </div>
    </div>
 </div>
-{% endfor %}
+{% endfor %} -->
 
 <div id="loader-wrapper">
     <div id="loader"></div>

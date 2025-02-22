@@ -4,14 +4,15 @@ body {
     padding: 0;
     background-color: #f3efef;
 }
+
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
     background-color: rgba(255, 255, 255, 0.9);
-    position: fixed;
     width: 100%;
+    height: 70px;
     top: 0;
 }
 
@@ -32,15 +33,19 @@ nav {
     font-weight: 500;
 }
 
-
+/* Improved Hero Section Responsiveness */
 .hero {
-    height: 100vh;
-    background: url('../static/images/ai.jpg') center/cover no-repeat;
+    height: 80vh; /* Reduced height for better responsiveness */
+    background: url('/static/image/lib.jpeg') no-repeat ;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding-top: 80px;
+    background-color: #f9c922;
+    height: 550px;
+    
+
 }
 
 .hero-content {
@@ -91,19 +96,11 @@ h1 {
     font-size: 1.1rem;
 }
 
-
-
-
-
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
-
-
-
-
 
 .book-category {
     padding-top: 35px;
@@ -118,16 +115,37 @@ img {
     border-radius: 10px;
 }
 
+/* Improved Book Grid Layout */
 .book-grid {
     display: flex;
     gap: 20px;
     overflow-x: auto;
     scroll-behavior: smooth;
+    padding-bottom: 10px; /* Add padding to avoid cutting off content */
+}
+
+/* Custom scrollbar for book grid */
+.book-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.book-grid::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.book-grid::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.book-grid::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 .book-item {
     flex: 0 0 auto;
-    width: 200px;
+    width: 150px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -137,10 +155,10 @@ img {
 }
 
 .book-item img {
-    width: 100%;
+    width: 80%;
     height: auto;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .book-item p {
@@ -267,4 +285,23 @@ img {
 
 .loaded #loader {
     opacity: 0;
+}
+
+/* Media Queries for Hero Section Responsiveness */
+@media (max-width: 768px) {
+    .hero {
+        height: 60vh; /* Adjust height for mobile devices */
+    }
+
+    h1 {
+        font-size: 2rem; /* Reduce font size for smaller screens */
+    }
+
+    .subheading {
+        font-size: 1.2rem;
+    }
+
+    .search-box {
+        width: 100%; /* Make search box full width on mobile */
+    }
 }
