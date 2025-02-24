@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from werkzeug.utils import secure_filename
 import bcrypt
 import os
+import requests
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/books'
@@ -193,7 +194,18 @@ def delete_book(book_id):
     flash("book deleted successfully..." ,"success")
     return redirect(url_for('book'))
 
-
+@app.route('/book/<book_id>')
+def book_details(book_id):
+    
+    api_key = 'YOUR_GOOGLE_BOOKS_API_KEY'
+    url = f'https://www.googleapis.com/books/v1/volumes/{book_id}?key={'AIzaSyBXAzmRYtYaq2bBgdMKS3-aUMKt-6uwwJg'}'
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        book = response.json()
+        return render_template('book_details.html', book=book)
+    else:
+        return "Book not found", 404
 
 @app.route("/member")  
 def member():
