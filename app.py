@@ -192,7 +192,12 @@ def delete_book(book_id):
     db.session.commit()
     flash("book deleted successfully..." ,"success")
     return redirect(url_for('book'))
-    
+
+
+
+@app.route("/member")  
+def member():
+    return render_template('member.html')
     
 
 @app.route("/logout")

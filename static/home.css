@@ -87,6 +87,23 @@ nav {
     background: rgba(255, 255, 255, 0.9); 
 }
 
+.member_btn {
+    padding: 15px 35px;
+    background-color: #5e17eb;
+    color: rgb(255, 242, 242);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+
+}
+
+.member_btn:hover {
+    background-color: #7b4ad6;
+
+}   
+
 .search-btn {
     padding: 15px 35px;
     background-color: #5e17eb;
@@ -98,7 +115,7 @@ nav {
     transition: background-color 0.3s ease;
 }
 .search-btn:hover {
-    background-color: #e65c00; 
+    background-color: #7b4ad6; 
 }
 
 @media (max-width: 768px) {

@@ -15,14 +15,18 @@
   <nav>
     <div class="logo px-5"><img src="{{ url_for('static', filename='image/mylogo.png') }}" alt="logo" style="height: 45px;">  </div>
     <div class="nav-links">
+      <a href="{{url_for('home')}}"><b>Home</b></a>
+      <b>Help</b>
+      <b>About us</b>
       {% if 'email' in session %}
       <a href="{{url_for('logout')}}"><b>Logout</b></a>
       {% else %}  
        <a href="{{url_for('login')}}"><b>Login</b></a>
+       <a href="{{url_for('account')}}"><b>Create Account </b></a> 
       {% endif %}
-      <a href="{{url_for('account')}}"><b>Create Account </b></a>
-      <a href="{{url_for('adminlogin')}}"><b>Admin</b></a>
+           
     </div>
+    <a href="{{url_for('member')}}"><button class="member_btn">Membership</button></a>
 </nav>
 <section class="hero ">
   <div class="hero-content my-5 px-5">
