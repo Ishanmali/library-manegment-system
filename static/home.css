@@ -16,11 +16,6 @@ nav {
     top: 0;
 }
 
-.logo {
-    font-size: 28px;
-    font-weight: bold;
-    color: #ff6b00;
-}
 
 .nav-links {
     display: flex;
@@ -33,62 +28,96 @@ nav {
     font-weight: 500;
 }
 
-/* Improved Hero Section Responsiveness */
+
 .hero {
-    height: 80vh; /* Reduced height for better responsiveness */
-    background: url('/static/image/lib.jpeg') no-repeat ;
+    height: 80vh; 
+    background: url('/static/image/hero.jpeg') no-repeat  right center ; /* Fix background image */
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding-top: 80px;
-    background-color: #f9c922;
-    height: 550px;
-    
+    justify-content: flex-start; 
+    text-align: left;
+    padding: 0 50px; 
+    position: relative; 
+    background-color: #fffefd;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
 }
+
 
 .hero-content {
-    max-width: 800px;
+    position: relative; 
+    z-index: 2;
+    max-width: 700px;
     padding: 20px;
+    border-radius: 10px;
 }
 
-h1 {
+.hero h2 {
     font-size: 2.8rem;
-    color: #2d3436;
+    color: #030303; 
     margin-bottom: 20px;
     line-height: 1.2;
 }
 
-.subheading {
+.hero .subheading {
     font-size: 1.4rem;
-    color: #636e72;
+    color: #222020; /* Light gray text */
     margin-bottom: 40px;
 }
 
 .search-container {
     display: flex;
-    justify-content: center;
     gap: 10px;
     margin-bottom: 30px;
 }
 
 .search-box {
     width: 400px;
-    padding: 1px 25px;
-    border: 2px solid #ff6b00;
+    padding: 15px 25px;
+    border: 2px solid #5e17eb;
     border-radius: 30px;
     font-size: 16px;
+    background: rgba(255, 255, 255, 0.9); 
 }
 
 .search-btn {
     padding: 15px 35px;
-    background-color: #ff6b00;
-    color: white;
+    background-color: #5e17eb;
+    color: rgb(255, 242, 242);
     border: none;
     border-radius: 30px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+.search-btn:hover {
+    background-color: #e65c00; 
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 60vh;
+        padding: 0 20px; 
+    }
+
+    .hero h2 {
+        font-size: 2rem; 
+    }
+
+    .hero .subheading {
+        font-size: 1.2rem;
+    }
+
+    .search-box {
+        width: 100%; 
+    }
 }
 
 .tagline {
@@ -118,10 +147,12 @@ img {
 /* Improved Book Grid Layout */
 .book-grid {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
-    overflow-x: auto;
+    justify-content: flex-start;
+    /* overflow-x: auto;
     scroll-behavior: smooth;
-    padding-bottom: 10px; /* Add padding to avoid cutting off content */
+    padding-bottom: 10px;*/   /* Add padding to avoid cutting off content */
 }
 
 /* Custom scrollbar for book grid */
@@ -144,21 +175,23 @@ img {
 }
 
 .book-item {
-    flex: 0 0 auto;
-    width: 150px;
+    flex: 0 0 calc(25% - 20px);
+    max-width: calc(25% - 20px);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /*width: 150px;*/
 }
 
 .book-item:hover {
     transform: scale(1.05);
+    
 }
 
 .book-item img {
-    width: 80%;
+    width: 100%;
     height: auto;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .book-item p {
