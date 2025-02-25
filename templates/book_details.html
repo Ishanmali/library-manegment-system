@@ -11,7 +11,21 @@
         <div class="book-cover">
             <img src="{{ book.volumeInfo.imageLinks.thumbnail }}" alt="{{ book.volumeInfo.title }}">
         </div>
-        
+        <div class="book-info">
+            <h1>{{ book.volumeInfo.title }}</h1>
+            <p><strong>Author(s):</strong> {{ book.volumeInfo.authors | join(', ') }}</p>
+            <p><strong>Publisher:</strong> {{ book.volumeInfo.publisher }}</p>
+            <p><strong>Published Date:</strong> {{ book.volumeInfo.publishedDate }}</p>
+            <p><strong>Description:</strong> {{ book.volumeInfo.description }}</p>
+            <div class="actions">
+                {% if book.accessInfo.webReaderLink %}
+                    <a href="{{ book.accessInfo.webReaderLink }}" class="btn-read">Read Online</a>
+                {% endif %}
+                {% if book.accessInfo.pdf.downloadLink %}
+                    <a href="{{ book.accessInfo.pdf.downloadLink }}" class="btn-download">Download PDF</a>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </body>
 </html>

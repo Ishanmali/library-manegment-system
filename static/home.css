@@ -16,6 +16,9 @@ nav {
     top: 0;
 }
 
+.hide{
+    color: #5e17eb;
+}
 
 .nav-links {
     display: flex;

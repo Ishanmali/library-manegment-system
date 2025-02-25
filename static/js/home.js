@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 });
 
-// Function to create a book item
+// Function book item
 function createBookItem(book) {
     const bookItem = document.createElement('div');
     bookItem.className = 'book-item col-md-3';
@@ -86,6 +86,25 @@ function createBookItem(book) {
     bookItem.innerHTML = `
         <img src="${coverImage}" alt="${book.volumeInfo.title}">
     `;
+
+    return bookItem;
+}
+
+function createBookItem(book) {
+    const bookItem = document.createElement('div');
+    bookItem.className = 'book-item col-md-3';
+
+    const coverImage = book.volumeInfo.imageLinks?.thumbnail || 'https://via.placeholder.com/150x200'; 
+
+    bookItem.innerHTML = `
+        <img src="${coverImage}" alt="${book.volumeInfo.title}">
+    `;
+
+    
+    bookItem.addEventListener('click', () => {
+        const bookId = book.id; 
+        window.location.href = `/book/${bookId}`; 
+    });
 
     return bookItem;
 }
