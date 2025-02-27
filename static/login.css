@@ -57,7 +57,7 @@ body {
 .login-form button {
     width: 100%;
     padding: 10px;
-    background-color: #aa571ffd; /* Brownish-orange color */
+    background-color: #aa571ffd; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -100,4 +100,25 @@ body {
     text-align: right;
     text-decoration: none;
 
+}  
+
+
+
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
 }
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+
+
+

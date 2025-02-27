@@ -55,7 +55,7 @@
              <div class="row book-grid" id="new-books">
                 <!-- Static Books -->
                 {% for book in new_books %}
-                <div class="book-item col-md-4">
+                <div class="book-item col-md-3">
                     <img src="{{ url_for('static', filename=book.cover_image or 'cover_image/default_cover.jpg') }}" alt="{{ book.title }}">
                 </div>
                 {% endfor %}

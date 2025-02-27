@@ -10,6 +10,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </head>
 <body>
+
+
     <div class="login-container">
         <div class="login-form">
           <img src="{{ url_for('static', filename='image/123.png') }}" alt="logo">
@@ -17,6 +19,7 @@
             <h2>Login</h2>
             
             <!-- Display Flash Messages -->
+  
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     <div class="flash-messages">
@@ -28,6 +31,7 @@
             {% endwith %}
             
             <!-- Form for Login -->
+           
             <form action="{{ url_for('login') }}" method="POST">
                 <label for="username">Email:</label>
                 <input type="text" id="username" name="username" placeholder="Enter your email" required>
@@ -46,8 +50,8 @@
             <br>
              <p> Login as a <a href="{{url_for('adminlogin')}}"><b>Admin</b></a> </p>
         </div>
-    </div>
+    </div> 
 </body>
 </html>
-{% endblock %}
+{% endblock %}  
 

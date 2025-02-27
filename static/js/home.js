@@ -24,12 +24,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+  // Fetch books from the API
 document.addEventListener('DOMContentLoaded', function () {
     const myapi = "AIzaSyBXAzmRYtYaq2bBgdMKS3-aUMKt-6uwwJg"; 
     const newBooksContainer = document.getElementById("new-books");
     const fictionBooksContainer = document.getElementById("fiction-books");
 
-    // Fetch books from the API
+   
     fetch(`https://www.googleapis.com/books/v1/volumes?q=new&maxResults=8&key=${myapi}`)
         .then(response => {
             if (!response.ok) {
