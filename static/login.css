@@ -128,19 +128,22 @@ height: 100%;
     font-family: 'Poppins', sans-serif;
 }
 .wrapper{
-    background: #ececec;
+    background: #fff;
     padding: 0 20px 0 20px;
+    background: rgb(0,242,255);
+    background: linear-gradient(90deg, rgb(73, 179, 206) 0%, rgb(151, 25, 255) 60%, #aa64d3 100%);
 }
 .main{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    
 }
 .side-image{
-    background-image: url('/static/image/hero.jpeg');
+    background-image: url('/static/image/Books.jpeg');
     background-position: center;
-    background-size: cover;
+    background-size:125%;
     background-repeat: no-repeat;
     border-radius: 10px 0 0 10px;
     position: relative;
@@ -151,8 +154,8 @@ height: 100%;
   border-radius: 10px;
   background: #fff;
   padding: 0px;
-  box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.2);
-}
+  box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.541);
+  
 .text{
     position: absolute;
     top: 50%;
@@ -234,7 +237,7 @@ img{
     transition: .4s;
  }
  .submit:hover{
-    background: rgba(37, 95, 156, 0.937);
+    background: #5e17eb;
     color: #fff;
  }
  .signin{

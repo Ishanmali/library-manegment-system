@@ -34,7 +34,7 @@ nav {
 
 .hero {
     height: 80vh; 
-    background: url('/static/image/hero.jpeg') no-repeat  right center ; /* Fix background image */
+    background: url('/static/image/hero.jpeg') no-repeat  right center ; 
     display: flex;
     align-items: center;
     justify-content: flex-start; 

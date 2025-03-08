@@ -14,43 +14,42 @@
 
     <div class="wrapper">
         <div class="container main">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div class="flash-messages">
-                    {% for category, message in messages %}
-                        <div class="{{ category }}">{{ message }}</div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}   
-        
+          
             <div class="row">
                 <div class="col-md-6 side-image">
-                    <img src="{{ url_for('static', filename='image/ai.jpg') }}" alt="logo">
                     <div class="text">
-                        <p>Join the community of developers <i>- ludiflex</i></p>
+                       
                     </div>
                     
                 </div>
     
                 <div class="col-md-6 right">
                     <div class="input-box">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            <div class="flash-messages">
+                                {% for category, message in messages %}
+                                    <div class="{{ category }}">{{ message }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endwith %} 
                      <form action="{{ url_for('login') }}" method="POST">  
-                        <header>Create account</header>
+                        <header>Login</header>
                         <div class="input-field">
-                            <input type="text" class="input" id="email" required="" autocomplete="off">
+                            <input type="text" class="input" id="username" name="username" required="" autocomplete="off">
                             <label for="email">Email</label> 
                         </div> 
                         <div class="input-field">
-                            <input type="password" class="input" id="pass" required="">
+                            <input type="password" class="input" id="password" name="password" required="">
                             <label for="pass">Password</label>
                          </div> 
                         <div class="input-field">
                             
-                            <input type="submit" class="submit" value="Sign Up">
+                            <input type="submit" class="submit" value="Login">
                         </div> 
                         <div class="signin">
-                        <span>Already have an account? <a href="#">Log in here</a></span>
+                        <span>Already have an account? <a href="{{url_for('account')}}"><b>Create Account</b></a></p></span>
                         </div>
                      </form>
                     </div> 
@@ -59,11 +58,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
 
 
 
@@ -106,9 +100,8 @@
             <br>
              <p> Login as a <a href="{{url_for('adminlogin')}}"><b>Admin</b></a> </p>
         </div>
-    </div> 
+    </div> -->
 </body>
 </html>
 {% endblock %}  
 
--->
